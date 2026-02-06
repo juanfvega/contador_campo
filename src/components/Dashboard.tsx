@@ -232,7 +232,7 @@ export default function Dashboard() {
                 <div className="flex flex-col gap-3 items-end">
                     <Button
                         onClick={handleSharePDF}
-                        size="md" // Slightly smaller
+                        size="lg"
                         className="rounded-full shadow-xl flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white"
                         title="Compartir en Drive, WhatsApp, etc."
                     >
@@ -286,7 +286,7 @@ export default function Dashboard() {
                                             <div className="col-span-5">Caravana</div>
                                             <div className="col-span-2 text-center">Vacuna</div>
                                             <div className="col-span-2 text-center">Antiparasitario</div>
-                                            <div className="col-span-2 text-end">Accion</div>
+                                            <div className="col-span-2 text-end">Acción</div>
                                         </div>
 
                                         {getByType(selectedType).map((animal, idx) => (
