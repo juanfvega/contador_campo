@@ -268,16 +268,16 @@ export default function Dashboard() {
                             className="relative bg-[var(--card)] w-full max-w-4xl max-h-[80vh] rounded-2xl overflow-hidden shadow-2xl flex flex-col border border-[var(--card-border)]"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="p-6 border-b border-[var(--card-border)] flex justify-between items-center bg-[var(--muted)]/30">
-                                <h2 className="text-2xl font-bold text-[var(--primary)]">{selectedType}</h2>
+                            <div className="p-3 md:p-6 border-b border-[var(--card-border)] flex justify-between items-center bg-[var(--muted)]/30 sticky top-0 z-20 backdrop-blur-md">
+                                <h2 className="text-lg md:text-2xl font-bold text-[var(--primary)]">{selectedType}</h2>
                                 <div>
-                                    <Button onClick={() => setSelectedType(null)} variant="ghost" size="sm">
-                                        <X className="w-6 h-6" />
+                                    <Button onClick={() => setSelectedType(null)} variant="ghost" size="sm" className="p-1 md:p-2 h-8 w-8 md:h-10 md:w-10">
+                                        <X className="w-5 h-5 md:w-6 md:h-6" />
                                     </Button>
                                 </div>
                             </div>
 
-                            <div className="p-6 overflow-y-auto flex-1 pb-28">
+                            <div className="p-2 md:p-6 overflow-y-auto flex-1 pb-20 md:pb-28 scroll-smooth">
                                 {getByType(selectedType).length === 0 ? (
                                     <div className="text-center text-[var(--muted-foreground)] py-10">
                                         No hay animales registrados en esta categoría.
@@ -299,7 +299,7 @@ export default function Dashboard() {
                                                 layout
                                                 initial={{ opacity: 0, x: -20 }}
                                                 animate={{ opacity: 1, x: 0 }}
-                                                className="grid grid-cols-5 md:grid-cols-12 gap-2 md:gap-4 items-center bg-[var(--muted)]/20 px-4 py-3 rounded-lg border border-transparent hover:border-[var(--card-border)] transition-colors"
+                                                className="grid grid-cols-5 md:grid-cols-12 gap-1 md:gap-4 items-center bg-[var(--muted)]/20 px-2 py-1.5 md:px-4 md:py-3 rounded-md md:rounded-lg border border-transparent hover:border-[var(--card-border)] transition-colors"
                                             >
                                                 <div className="hidden md:block col-span-1 text-[var(--muted-foreground)]">{idx + 1}</div>
                                                 <div className="col-span-2 md:col-span-5">
@@ -307,8 +307,8 @@ export default function Dashboard() {
                                                         type="text"
                                                         value={animal.caravana || ''}
                                                         onChange={(e) => updateCaravana(animal.id, e.target.value)}
-                                                        placeholder="-"
-                                                        className="bg-transparent border border-[var(--muted-foreground)]/20 rounded px-2 py-1 w-full text-sm focus:border-[var(--primary)]/50 focus:outline-none"
+                                                        placeholder="N°"
+                                                        className="bg-transparent border border-[var(--muted-foreground)]/20 rounded px-1.5 py-0.5 md:px-2 md:py-1 w-full text-xs md:text-sm focus:border-[var(--primary)]/50 focus:outline-none h-7 md:h-auto"
                                                     />
                                                 </div>
 
@@ -339,9 +339,9 @@ export default function Dashboard() {
                                                 <div className="col-span-1 md:col-span-2 flex justify-end">
                                                     <button
                                                         onClick={() => removeAnimal(animal.id)}
-                                                        className="p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition-colors"
+                                                        className="p-1.5 md:p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition-colors"
                                                     >
-                                                        <Trash2 className="w-4 h-4" />
+                                                        <Trash2 className="w-3.5 h-3.5 md:w-4 md:h-4" />
                                                     </button>
                                                 </div>
                                             </motion.div>
@@ -350,20 +350,21 @@ export default function Dashboard() {
                                 )}
                             </div>
 
-                            <div className="absolute bottom-6 right-6 z-10 flex gap-4">
+                            <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6 bg-[var(--card)]/95 border-t border-[var(--card-border)] flex gap-2 md:gap-4 justify-between md:justify-end z-30 shadow-2xl backdrop-blur-lg">
                                 <Button
                                     onClick={() => setSelectedType(null)}
-                                    size="lg"
-                                    className="rounded-full shadow-xl flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white border-0"
+                                    className="rounded-full shadow-md flex items-center justify-center gap-1 bg-emerald-600 hover:bg-emerald-700 text-white border-0 py-1.5 px-3 md:py-3 md:px-6 text-xs md:text-lg h-9 md:h-12 flex-1 md:flex-none"
                                 >
-                                    <Check className="w-5 h-5" /> Finalizar
+                                    <Check className="w-3.5 h-3.5 md:w-5 md:h-5" />
+                                    <span>Finalizar</span>
                                 </Button>
                                 <Button
                                     onClick={() => addAnimal(selectedType)}
-                                    size="lg"
-                                    className="rounded-full shadow-xl flex items-center gap-2 bg-[var(--primary)] hover:bg-[var(--primary)]/90 text-[var(--primary-foreground)]"
+                                    className="rounded-full shadow-md flex items-center justify-center gap-1 bg-[var(--primary)] hover:bg-[var(--primary)]/90 text-[var(--primary-foreground)] py-1.5 px-3 md:py-3 md:px-6 text-xs md:text-lg h-9 md:h-12 flex-1 md:flex-none"
                                 >
-                                    <Plus className="w-5 h-5" /> Agregar Individual
+                                    <Plus className="w-3.5 h-3.5 md:w-5 md:h-5" />
+                                    <span>Agregar</span>
+                                    <span className="hidden md:inline ml-1">Individual</span>
                                 </Button>
                             </div>
                         </motion.div>
