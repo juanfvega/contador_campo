@@ -1,6 +1,8 @@
 "use client";
 
+
 import { useApp, AnimalType, Animal } from "@/context/AppContext";
+import { Footer } from "./Footer";
 import { Card } from "./ui/Card";
 import { Button } from "./ui/Button";
 import { useState } from "react";
@@ -172,7 +174,7 @@ export default function Dashboard() {
 
 
     return (
-        <div className="min-h-screen p-6 pb-20">
+        <div className="min-h-screen p-6 pb-48">
             <header className="flex justify-between items-center mb-10">
                 <div>
                     <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary)] to-emerald-400 text-shadow">
@@ -211,7 +213,7 @@ export default function Dashboard() {
             </div>
 
             {/* Delete Button - Positioned right below cards */}
-            <div className="flex justify-end mb-10 mr-2">
+            <div className="flex justify-center mb-6 mr-2">
                 <Button
                     onClick={() => setShowDeleteConfirm(true)}
                     variant="danger"
@@ -224,12 +226,14 @@ export default function Dashboard() {
             </div>
 
             {/* Floating Action Button for Export */}
-            <motion.div
-                className="fixed bottom-8 right-8 flex flex-col gap-4"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-            >
-                <div className="flex flex-col gap-3 items-end">
+            {/* Action Buttons - Static Position */}
+            {/* Action Buttons - Static Position */}
+            <div className="flex flex-col items-center md:items-end gap-4 mb-10 w-full pr-2">
+                <div className="flex flex-col gap-4">
+                    <Button onClick={handleDownloadPDF} size="lg" className="rounded-full shadow-2xl flex items-center justify-center gap-2 w-56">
+                        <FileDown className="w-5 h-5" />
+                        Exportar PDF
+                    </Button>
                     <Button
                         onClick={handleSharePDF}
                         size="lg"
@@ -240,12 +244,10 @@ export default function Dashboard() {
                         <span className="hidden md:inline">Compartir / Drive</span>
                         <span className="md:hidden">Compartir</span>
                     </Button>
-                    <Button onClick={handleDownloadPDF} size="lg" className="rounded-full shadow-2xl flex items-center justify-center gap-2 w-56">
-                        <FileDown className="w-5 h-5" />
-                        Exportar PDF
-                    </Button>
                 </div>
-            </motion.div>
+            </div>
+
+            <Footer />
 
             {/* Detail Modal */}
             <AnimatePresence>
