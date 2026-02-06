@@ -199,7 +199,7 @@ export default function Dashboard() {
                             </div>
                             <div className="flex items-end justify-between">
                                 <div>
-                                    <span className="text-4xl font-bold text-white">{getCount(type)}</span>
+                                    <span className="text-4xl font-bold text-[var(--foreground)]">{getCount(type)}</span>
                                     <span className="text-[var(--muted-foreground)] ml-2">animales</span>
                                 </div>
                             </div>
@@ -252,10 +252,10 @@ export default function Dashboard() {
                             initial={{ scale: 0.9, y: 50 }}
                             animate={{ scale: 1, y: 0 }}
                             exit={{ scale: 0.9, y: 50 }}
-                            className="relative bg-[#1e293b] w-full max-w-4xl max-h-[80vh] rounded-2xl overflow-hidden shadow-2xl flex flex-col border border-[var(--card-border)]"
+                            className="relative bg-[var(--card)] w-full max-w-4xl max-h-[80vh] rounded-2xl overflow-hidden shadow-2xl flex flex-col border border-[var(--card-border)]"
                             onClick={e => e.stopPropagation()}
                         >
-                            <div className="p-6 border-b border-[var(--card-border)] flex justify-between items-center bg-[#0f172a]/50">
+                            <div className="p-6 border-b border-[var(--card-border)] flex justify-between items-center bg-[var(--muted)]/30">
                                 <h2 className="text-2xl font-bold text-[var(--primary)]">{selectedType}</h2>
                                 <div>
                                     <Button onClick={() => setSelectedType(null)} variant="ghost" size="sm">
@@ -286,7 +286,7 @@ export default function Dashboard() {
                                                 layout
                                                 initial={{ opacity: 0, x: -20 }}
                                                 animate={{ opacity: 1, x: 0 }}
-                                                className="grid grid-cols-5 md:grid-cols-12 gap-2 md:gap-4 items-center bg-[#0f172a]/30 px-4 py-3 rounded-lg border border-transparent hover:border-[var(--card-border)] transition-colors"
+                                                className="grid grid-cols-5 md:grid-cols-12 gap-2 md:gap-4 items-center bg-[var(--muted)]/20 px-4 py-3 rounded-lg border border-transparent hover:border-[var(--card-border)] transition-colors"
                                             >
                                                 <div className="hidden md:block col-span-1 text-[var(--muted-foreground)]">{idx + 1}</div>
                                                 <div className="col-span-2 md:col-span-5">
@@ -295,7 +295,7 @@ export default function Dashboard() {
                                                         value={animal.caravana || ''}
                                                         onChange={(e) => updateCaravana(animal.id, e.target.value)}
                                                         placeholder="-"
-                                                        className="bg-transparent border border-white/10 rounded px-2 py-1 w-full text-sm focus:border-white/30 focus:outline-none"
+                                                        className="bg-transparent border border-[var(--muted-foreground)]/20 rounded px-2 py-1 w-full text-sm focus:border-[var(--primary)]/50 focus:outline-none"
                                                     />
                                                 </div>
 
@@ -372,7 +372,7 @@ export default function Dashboard() {
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
-                            className="bg-[#1e293b] p-6 rounded-2xl shadow-2xl max-w-sm w-full border border-[var(--card-border)] text-center"
+                            className="bg-[var(--card)] p-6 rounded-2xl shadow-2xl max-w-sm w-full border border-[var(--card-border)] text-center"
                             onClick={e => e.stopPropagation()}
                         >
                             <div className="mx-auto w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center mb-4 text-red-500">
