@@ -10,34 +10,35 @@ export function ThemeToggle() {
     return (
         <button
             onClick={toggleTheme}
-            className="fixed top-4 right-4 z-50 p-2 rounded-full backdrop-blur-md border shadow-lg transition-colors duration-300 focus:outline-none dark:bg-slate-800/80 dark:border-slate-700 bg-white/80 border-slate-200"
+            className={`fixed top-6 right-6 z-50 flex items-center gap-2 p-1 rounded-full border shadow-lg transition-colors duration-300 focus:outline-none ${theme === "dark"
+                    ? "bg-slate-800/80 border-slate-700 hover:border-slate-600"
+                    : "bg-white/80 border-slate-200 hover:border-slate-300"
+                }`}
             aria-label="Toggle Theme"
+            title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
         >
-            <div className="relative w-6 h-6">
+            <div className="relative flex items-center">
+                {/* Sliding Pill Background */}
                 <motion.div
-                    initial={false}
-                    animate={{
-                        scale: theme === "light" ? 1 : 0,
-                        rotate: theme === "light" ? 0 : 90,
-                        opacity: theme === "light" ? 1 : 0,
+                    layout
+                    transition={{ type: "spring", stiffness: 700, damping: 30 }}
+                    className={`absolute h-8 w-8 rounded-full shadow-sm ${theme === "dark" ? "bg-slate-700 right-0" : "bg-white left-0"
+                        }`}
+                    style={{
+                        left: theme === "light" ? "0" : "auto",
+                        right: theme === "dark" ? "0" : "auto"
                     }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute inset-0 flex items-center justify-center text-yellow-500"
-                >
-                    <Sun size={20} className="fill-current" />
-                </motion.div>
-                <motion.div
-                    initial={false}
-                    animate={{
-                        scale: theme === "dark" ? 1 : 0,
-                        rotate: theme === "dark" ? 0 : -90,
-                        opacity: theme === "dark" ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute inset-0 flex items-center justify-center text-slate-200"
-                >
-                    <Moon size={20} className="fill-current" />
-                </motion.div>
+                />
+
+                {/* Icons Container */}
+                <div className="relative z-10 flex items-center justify-between w-20 px-1">
+                    <div className={`p-1.5 rounded-full transition-colors ${theme === "light" ? "text-yellow-500" : "text-slate-400"}`}>
+                        <Sun size={18} fill={theme === "light" ? "currentColor" : "none"} />
+                    </div>
+                    <div className={`p-1.5 rounded-full transition-colors ${theme === "dark" ? "text-blue-200" : "text-slate-400"}`}>
+                        <Moon size={18} fill={theme === "dark" ? "currentColor" : "none"} />
+                    </div>
+                </div>
             </div>
         </button>
     );

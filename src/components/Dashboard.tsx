@@ -175,19 +175,15 @@ export default function Dashboard() {
         <div className="min-h-screen p-6 pb-20">
             <header className="flex justify-between items-center mb-10">
                 <div>
-                    <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary)] to-emerald-400">
+                    <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary)] to-emerald-400 text-shadow">
                         Contador de Campo
                     </h1>
                     <p className="text-[var(--muted-foreground)]">Gestiona tu ganado de forma eficiente</p>
                 </div>
-                <Button onClick={() => setShowDeleteConfirm(true)} variant="danger" className="flex items-center gap-2">
-                    <Trash2 className="w-4 h-4" />
-                    Borrar Todo
-                </Button>
             </header>
 
             {/* Summary Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                 {ANIMAL_TYPES.map((type, index) => (
                     <Card key={type} delay={index * 0.1} className="hover:border-[var(--primary)] transition-colors cursor-pointer group" >
                         <div onClick={() => setSelectedType(type)} className="h-full">
@@ -214,13 +210,26 @@ export default function Dashboard() {
                 ))}
             </div>
 
+            {/* Delete Button - Positioned right below cards */}
+            <div className="flex justify-end mb-10 mr-2">
+                <Button
+                    onClick={() => setShowDeleteConfirm(true)}
+                    variant="danger"
+                    size="lg"
+                    className="rounded-full shadow-lg flex items-center gap-2"
+                >
+                    <Trash2 className="w-5 h-5" />
+                    Borrar Todo
+                </Button>
+            </div>
+
             {/* Floating Action Button for Export */}
             <motion.div
                 className="fixed bottom-8 right-8 flex flex-col gap-4"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
             >
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3 items-end">
                     <Button
                         onClick={handleSharePDF}
                         size="md" // Slightly smaller
