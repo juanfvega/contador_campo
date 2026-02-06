@@ -174,36 +174,36 @@ export default function Dashboard() {
 
 
     return (
-        <div className="min-h-screen p-6 pb-48">
-            <header className="flex justify-between items-center mb-10">
+        <div className="min-h-screen p-3 md:p-6 pb-40 md:pb-48">
+            <header className="flex justify-between items-center mb-4 md:mb-10">
                 <div>
-                    <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary)] to-emerald-400 text-shadow">
+                    <h1 className="text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary)] to-emerald-400 text-shadow">
                         Contador de Campo
                     </h1>
-                    <p className="text-[var(--muted-foreground)]">Gestiona tu ganado de forma eficiente</p>
+                    <p className="text-xs md:text-base text-[var(--muted-foreground)]">Gestiona tu ganado de forma eficiente</p>
                 </div>
             </header>
 
-            {/* Summary Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            {/* Summary Cards Grid - 2 columns on mobile for better space usage, 1 on very small */}
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 mb-6">
                 {ANIMAL_TYPES.map((type, index) => (
-                    <Card key={type} delay={index * 0.1} className="hover:border-[var(--primary)] transition-colors cursor-pointer group" >
+                    <Card key={type} delay={index * 0.1} className="hover:border-[var(--primary)] transition-colors cursor-pointer group p-3 md:p-6" >
                         <div onClick={() => setSelectedType(type)} className="h-full">
-                            <div className="flex justify-between items-start mb-4">
-                                <h3 className="text-2xl font-bold">{type}</h3>
-                                <div className="p-2 bg-[var(--primary)]/10 rounded-full text-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-[var(--primary-foreground)] transition-colors">
-                                    <Plus className="w-6 h-6" />
+                            <div className="flex justify-between items-start mb-2 md:mb-4">
+                                <h3 className="text-sm md:text-2xl font-bold truncate">{type}</h3>
+                                <div className="p-1 md:p-2 bg-[var(--primary)]/10 rounded-full text-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-[var(--primary-foreground)] transition-colors shrink-0">
+                                    <Plus className="w-4 h-4 md:w-6 md:h-6" />
                                 </div>
                             </div>
-                            <div className="flex items-end justify-between">
+                            <div className="flex flex-col md:flex-row items-baseline md:items-end justify-between">
                                 <div>
-                                    <span className="text-4xl font-bold text-[var(--foreground)]">{getCount(type)}</span>
-                                    <span className="text-[var(--muted-foreground)] ml-2">animales</span>
+                                    <span className="text-2xl md:text-4xl font-bold text-[var(--foreground)]">{getCount(type)}</span>
+                                    <span className="text-xs md:text-base text-[var(--muted-foreground)] ml-1 md:ml-2">anim.</span>
                                 </div>
                             </div>
 
-                            {/* Mini stats */}
-                            <div className="mt-4 grid grid-cols-2 gap-2 text-sm text-[var(--muted-foreground)]">
+                            {/* Mini stats - Compact for mobile */}
+                            <div className="mt-2 md:mt-4 grid grid-cols-1 md:grid-cols-2 gap-0.5 md:gap-2 text-[10px] md:text-sm text-[var(--muted-foreground)]">
                                 <div>Vac: {getByType(type).filter(a => a.vaccination).length}</div>
                                 <div>Anti: {getByType(type).filter(a => a.antiparasitic).length}</div>
                             </div>
@@ -212,15 +212,15 @@ export default function Dashboard() {
                 ))}
             </div>
 
-            {/* Delete Button - Positioned right below cards */}
-            <div className="flex justify-center mb-6 mr-2">
+            {/* Delete Button - Compact on mobile */}
+            <div className="flex justify-center mb-4 md:mb-6 mr-0 md:mr-2">
                 <Button
                     onClick={() => setShowDeleteConfirm(true)}
                     variant="danger"
-                    size="lg"
-                    className="rounded-full shadow-lg flex items-center justify-center gap-2 w-56"
+                    // Mobile: smaller text, tighter padding. Desktop: full size
+                    className="rounded-full shadow-lg flex items-center justify-center gap-2 w-40 md:w-56 py-1.5 px-3 md:py-3 md:px-6 text-xs md:text-lg h-9 md:h-12"
                 >
-                    <Trash2 className="w-5 h-5" />
+                    <Trash2 className="w-3.5 h-3.5 md:w-5 md:h-5" />
                     Borrar Todo
                 </Button>
             </div>
@@ -228,21 +228,23 @@ export default function Dashboard() {
             {/* Floating Action Button for Export */}
             {/* Action Buttons - Static Position */}
             {/* Action Buttons - Static Position */}
-            <div className="flex flex-col items-center md:items-end gap-4 mb-10 w-full pr-2">
-                <div className="flex flex-col gap-4">
-                    <Button onClick={handleDownloadPDF} size="lg" className="rounded-full shadow-2xl flex items-center justify-center gap-2 w-56">
-                        <FileDown className="w-5 h-5" />
-                        Exportar PDF
+            {/* Action Buttons - Compact on mobile */}
+            <div className="flex flex-col items-center md:items-end gap-2 md:gap-4 mb-8 md:mb-10 w-full pr-0 md:pr-2">
+                <div className="flex flex-row md:flex-col gap-2 md:gap-4 w-full md:w-auto justify-center">
+                    <Button onClick={handleDownloadPDF}
+                        className="rounded-full shadow-2xl flex items-center justify-center gap-1.5 md:gap-2 w-36 md:w-56 py-1.5 px-3 md:py-3 md:px-6 text-xs md:text-lg h-9 md:h-12"
+                    >
+                        <FileDown className="w-3.5 h-3.5 md:w-5 md:h-5" />
+                        Exportar
                     </Button>
                     <Button
                         onClick={handleSharePDF}
-                        size="lg"
-                        className="rounded-full shadow-xl flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white w-56"
-                        title="Compartir en Drive, WhatsApp, etc."
+                        className="rounded-full shadow-xl flex items-center justify-center gap-1.5 md:gap-2 bg-blue-600 hover:bg-blue-700 text-white w-36 md:w-56 py-1.5 px-3 md:py-3 md:px-6 text-xs md:text-lg h-9 md:h-12"
+                        title="Compartir"
                     >
-                        <Share2 className="w-5 h-5" />
-                        <span className="hidden md:inline">Compartir / Drive</span>
+                        <Share2 className="w-3.5 h-3.5 md:w-5 md:h-5" />
                         <span className="md:hidden">Compartir</span>
+                        <span className="hidden md:inline">Compartir / Drive</span>
                     </Button>
                 </div>
             </div>
