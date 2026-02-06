@@ -9,18 +9,18 @@ El proyecto utiliza **Next.js 16** con **TypeScript** y sigue una arquitectura m
 ### 1. Frontend (Interfaz y Lógica de Usuario)
 Todo el código principal se encuentra dentro de la carpeta `src/`.
 *   **Páginas (App Router)**: En `src/app/`.
-    *   `page.tsx`: Punto de entrada que gestiona la vista condicional (Login vs Dashboard).
+    *   `page.tsx`: Punto de entrada principal de la aplicación.
     *   `layout.tsx`: Define la estructura base y envuelve la app en los Providers necesarios.
 *   **Componentes**: En `src/components/`.
     *   `Dashboard.tsx`: El corazón de la aplicación, contiene la lógica de conteo e interacción.
-    *   `Login.tsx`: Pantalla de acceso.
+
     *   `ui/`: Elementos reutilizables como botones y tarjetas (Cards).
 *   **Estilos**: Se utiliza **Tailwind CSS v4** para el diseño, con estilos globales en `src/app/globals.css`.
 
 ### 2. Backend y Persistencia de Datos
 Actualmente, el proyecto funciona **sin un backend tradicional** (Serverless/Node/Python) ni base de datos externa.
 *   **Lógica de Datos**: Se gestiona enteramente en el cliente a través de **React Context** (`src/context/AppContext.tsx`).
-*   **Persistencia**: Los datos (conteo de animales, autenticación) se guardan en el **Local Storage** del navegador. Esto permite que la información persista entre recargas de página en el dispositivo del usuario.
+*   **Persistencia**: Los datos (conteo de animales) se guardan en el **Local Storage** del navegador. Esto permite que la información persista entre recargas de página en el dispositivo del usuario.
 
 ### 📂 Mapa de Carpetas Clave
 
@@ -33,7 +33,7 @@ contador_campo/
 │   │   └── page.tsx     # Lógica de visualización principal
 │   ├── components/      # Bloques de la interfaz
 │   │   ├── Dashboard.tsx 
-│   │   └── Login.tsx    
+
 │   └── context/
 │       └── AppContext.tsx # "Cerebro" de la app (Estado y lógica)
 └── package.json         # Dependencias (Next, React, Tailwind, Framer Motion)
