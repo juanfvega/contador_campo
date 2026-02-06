@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+
+  --primary: #84cc16;
+  /* Lime 500 */
+  --primary-foreground: #0f172a;
+
+  --card: rgba(30, 41, 59, 0.7);
+  --card-foreground: #f8fafc;
+  --card-border: rgba(148, 163, 184, 0.2);
+
+  --accent: #22c55e;
+  --accent-foreground: #ffffff;
+
+  --muted: #334155;
+  --muted-foreground: #94a3b8;
+}
+
+/* Re-declare standard tailwind base styles if needed, but @import "tailwindcss" handles preflight */
+
+body {
+  color: var(--foreground);
+  background: radial-gradient(circle at top left, #1e293b, #0f172a);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+@utility glass {
+  background: var(--card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+@utility text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
