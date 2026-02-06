@@ -216,7 +216,7 @@ export default function Dashboard() {
                     onClick={() => setShowDeleteConfirm(true)}
                     variant="danger"
                     size="lg"
-                    className="rounded-full shadow-lg flex items-center gap-2"
+                    className="rounded-full shadow-lg flex items-center justify-center gap-2 w-56"
                 >
                     <Trash2 className="w-5 h-5" />
                     Borrar Todo
@@ -233,14 +233,14 @@ export default function Dashboard() {
                     <Button
                         onClick={handleSharePDF}
                         size="lg"
-                        className="rounded-full shadow-xl flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white"
+                        className="rounded-full shadow-xl flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white w-56"
                         title="Compartir en Drive, WhatsApp, etc."
                     >
                         <Share2 className="w-5 h-5" />
                         <span className="hidden md:inline">Compartir / Drive</span>
                         <span className="md:hidden">Compartir</span>
                     </Button>
-                    <Button onClick={handleDownloadPDF} size="lg" className="rounded-full shadow-2xl flex items-center gap-2">
+                    <Button onClick={handleDownloadPDF} size="lg" className="rounded-full shadow-2xl flex items-center justify-center gap-2 w-56">
                         <FileDown className="w-5 h-5" />
                         Exportar PDF
                     </Button>
